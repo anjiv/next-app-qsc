@@ -37,5 +37,5 @@ export async function getUsers() {
 
 export const getNewTodo = cache(() => {
   console.log("New todo added");
-  return Promise.resolve("Testing cache");
+  return Promise.resolve({id: 300, title: "Testing cache", completed: false});
 });

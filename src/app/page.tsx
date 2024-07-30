@@ -12,6 +12,7 @@ export default async function Home() {
     <>
       <h1>Todo count: {todos1.length}</h1>
       <h1>Users count: {user.length}</h1>
+      <li key={newtodo1.id}>{newtodo1.title}</li>
       <TodoList />
     </>
   );
