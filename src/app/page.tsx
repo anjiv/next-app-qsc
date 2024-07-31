@@ -1,5 +1,5 @@
 import { getNewTodo, getTodos, getUsers } from "@/api/api";
-import { TodoList } from "@/components/todolist";
+import TodoList from "@/components/TodoList";
 
 export default async function Home() {
   const todos1 = await getTodos();
