@@ -1,8 +1,12 @@
-export default async function Home() {
-  console.log("rendering");
+import Link from "next/link";
+
+export default function TestPage() {
+  console.log("Rendering test");
+
   return (
     <>
-      <h1>Test static page</h1>
+      <h1>Page Test</h1>
+      <Link href="/">Home</Link>
     </>
   );
 }
