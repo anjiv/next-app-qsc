@@ -1,9 +1,7 @@
-import { revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 export default function Revalidate() {
   // Revalidating test path.
-  // revalidatePath('/test');
-
-  revalidateTag("Todo");
-  return <h1>Revalidated Tag</h1>
+  revalidatePath('/test');
+  return <h1>Revalidated Path</h1>
 }
