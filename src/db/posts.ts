@@ -3,6 +3,8 @@ import prisma from "./db"
 import { unstable_cache } from "next/cache"
 import { cache } from "react"
 
+// Added cache for memoization request.
+// Added unstable_cache for next js data caching.
 export const getPosts = unstable_cache(
   cache(async ({
   query,

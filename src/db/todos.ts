@@ -2,7 +2,7 @@ import { cache } from "react";
 import prisma from "./db";
 import { unstable_cache } from "next/cache";
 
-// Added cache for cache memoization.
+// Added cache for memoization request.
 // Added unstable_cache for next js data caching.
 export const getTodos = unstable_cache(
   cache(async () => {

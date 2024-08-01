@@ -14,8 +14,8 @@ export function SearchForm({
   const pathname = usePathname();
   const query = searchParams.get("query") || "";
   const userId = searchParams.get("userId") || "";
-  const queryRef = useRef<HTMLInputElement>(null);
-  const userRef = useRef<HTMLSelectElement>(null);
+  const queryRef = useRef<HTMLInputElement>(null); // Query input element.
+  const userRef = useRef<HTMLSelectElement>(null); // User Select element.
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -24,7 +24,7 @@ export function SearchForm({
     params.set("query", queryRef.current?.value || "");
     params.set("userId", userRef.current?.value || "");
 
-    router.push(`${pathname}?${params.toString()}`)
+    router.push(`${pathname}?${params.toString()}`) // Push the url change.
   }
 
   return (

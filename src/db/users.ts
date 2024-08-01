@@ -2,6 +2,8 @@ import { unstable_cache } from "next/cache";
 import prisma from "./db"
 import { cache } from "react";
 
+// Added cache for memoization request.
+// Added unstable_cache for next js data caching.
 export const getUsers = unstable_cache(
   cache(async() => {
     await wait(2000);
