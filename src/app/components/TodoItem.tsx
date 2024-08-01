@@ -7,9 +7,9 @@ export default function TodoItem({
   title,
   completed,
 }: {
-  id: number;
-  title: string;
-  completed: boolean;
+  id: number
+  title: string
+  completed: boolean
 }) {
   const [isPending, startTransition] = useTransition();
 
