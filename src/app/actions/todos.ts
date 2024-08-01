@@ -3,7 +3,13 @@
 import { revalidatePath } from "next/cache";
 
 // export async function createTodo(title: string)
-export async function createTodo(formData: FormData) {
+export async function createTodo(prevState: unknown, formData: FormData) {
+
+  const title = formData.get("title");
+
+  if (title === "") {
+    return { errorMessage: "No title was given" };
+  }
 
   await fetch(`http://localhost:3001/todos`, {
     method: "POST",
@@ -11,7 +17,7 @@ export async function createTodo(formData: FormData) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      title: formData.get("title"),
+      title,
       // title // If passing only title in TodoForm
       completed: false,
     }),
