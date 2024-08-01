@@ -1,6 +1,5 @@
 import { getTodos } from "@/api/api";
 import Todoform from "../components/TodoForm";
-import SelectAllButton from "../components/SelectAllButton";
 import TodoItem from "../components/TodoItem";
 
 export default async function Todo() {
@@ -11,8 +10,6 @@ export default async function Todo() {
       <Todoform />
       {/* Server action passed as prop */}
       {/* <Todoform createTodo={createTodo}/> */}
-
-      <SelectAllButton ids={todos.map((todo) => todo.id)} />
       <ul>{todos.map(todo => (<TodoItem key={todo.id} {...todo} />))}</ul>
     </>
   )
