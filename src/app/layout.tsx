@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
-import "./styles.css";
-import Link from "next/link";
+import type { Metadata } from "next"
+import "./styles.css"
+import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Read only blog",
-};
+  title: "Read Only Blog",
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body>
@@ -28,10 +28,8 @@ export default function RootLayout({
             </li>
           </ul>
         </nav>
-        <div className="container">
-          {children}
-        </div>
+        <div className="container">{children}</div>
       </body>
     </html>
-  );
+  )
 }

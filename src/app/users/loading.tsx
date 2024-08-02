@@ -1,4 +1,4 @@
-import { Skeleton, SkeletonButton, SkeletonList } from "@/components/Skeleton";
+import { Skeleton, SkeletonButton, SkeletonList } from "@/components/Skeleton"
 
 export default function LoadingUsersPage() {
   return (
@@ -22,5 +22,5 @@ export default function LoadingUsersPage() {
         </SkeletonList>
       </div>
     </>
-  );
+  )
 }

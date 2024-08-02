@@ -1,6 +1,12 @@
-import { Fragment, ReactNode } from "react";
+import { Fragment, ReactNode, Suspense } from "react"
 
-export function Skeleton({ short, inline }: {short?: boolean, inline?: boolean}) {
+export function Skeleton({
+  short,
+  inline,
+}: {
+  short?: boolean
+  inline?: boolean
+}) {
   return (
     <div
       className="skeleton"
@@ -9,7 +15,7 @@ export function Skeleton({ short, inline }: {short?: boolean, inline?: boolean})
         display: inline ? "inline-block" : undefined,
       }}
     />
-  );
+  )
 }
 
 export function SkeletonButton() {
@@ -20,12 +26,18 @@ export function SkeletonInput() {
   return <div className="skeleton skeleton-input" />
 }
 
-export function SkeletonList({ amount, children }: {amount: number, children: ReactNode}) {
+export function SkeletonList({
+  amount,
+  children,
+}: {
+  amount: number
+  children: ReactNode
+}) {
   return (
     <>
       {Array.from({ length: amount }).map((_, i) => (
         <Fragment key={i}>{children}</Fragment>
       ))}
     </>
-  );
+  )
 }

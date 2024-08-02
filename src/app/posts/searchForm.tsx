@@ -1,30 +1,26 @@
-"use client";
+"use client"
 
-import { FormGroup } from "@/components/FormGroup";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { FormEvent, ReactNode, Suspense, useRef } from "react";
+import { FormGroup } from "@/components/FormGroup"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { FormEvent, ReactNode, Suspense, useRef } from "react"
 
-export function SearchForm({
-  userOptions
-}: {
-  userOptions: ReactNode
-}) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const query = searchParams.get("query") || "";
-  const userId = searchParams.get("userId") || "";
-  const queryRef = useRef<HTMLInputElement>(null); // Query input element.
-  const userRef = useRef<HTMLSelectElement>(null); // User Select element.
+export function SearchForm({ userOptions }: { userOptions: ReactNode }) {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const query = searchParams.get("query") || ""
+  const userId = searchParams.get("userId") || ""
+  const queryRef = useRef<HTMLInputElement>(null)
+  const userRef = useRef<HTMLSelectElement>(null)
 
   function handleSubmit(e: FormEvent) {
-    e.preventDefault();
+    e.preventDefault()
 
-    const params = new URLSearchParams(searchParams);
-    params.set("query", queryRef.current?.value || "");
-    params.set("userId", userRef.current?.value || "");
+    const params = new URLSearchParams(searchParams)
+    params.set("query", queryRef.current?.value || "")
+    params.set("userId", userRef.current?.value || "")
 
-    router.push(`${pathname}?${params.toString()}`) // Push the url change.
+    router.push(`${pathname}?${params.toString()}`)
   }
 
   return (

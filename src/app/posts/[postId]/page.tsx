@@ -1,16 +1,18 @@
-import { getPost } from "@/db/posts";
-import { getUser } from "@/db/users";
-import { Skeleton, SkeletonList } from "@/components/Skeleton";
-import { getPostComments } from "@/db/comments";
-import Link from "next/link";
-import { Suspense } from "react";
-import { notFound } from "next/navigation";
+import { getPostComments } from "@/db/comments"
+import { getPost } from "@/db/posts"
+import { getUser } from "@/db/users"
+import { Skeleton, SkeletonList } from "@/components/Skeleton"
+import Link from "next/link"
+import { Suspense } from "react"
+import { notFound } from "next/navigation"
+import { DeleteButton } from "./DeleteButton"
 
-export default function PostPage({
-  params: { postId },
-}: {
+type PageProps = {
   params: { postId: string }
-}) {
+}
+
+export default function PostPage(props: PageProps) {
+  const { params: {postId} } = props;
   return (
     <>
       <Suspense
@@ -18,6 +20,13 @@ export default function PostPage({
           <>
             <h1 className="page-title">
               <Skeleton inline short />
+              <div className="title-btns">
+                <Link className="btn btn-outline" href={`/posts/${postId}/edit`}>
+                  Edit
+                </Link>
+                {/* Client component as we delete on click of the button */}
+                <DeleteButton postId={postId}/>
+              </div>
             </h1>
             <span className="page-subtitle">
               By: <Skeleton short inline />
@@ -58,13 +67,21 @@ export default function PostPage({
 }
 
 async function PostDetails({ postId }: { postId: string }) {
-  const post = await getPost(postId);
+  const post = await getPost(postId)
 
-  if(post == null) return notFound();
+  if (post == null) return notFound()
 
   return (
     <>
-      <h1 className="page-title">{post.title}</h1>
+      <h1 className="page-title">
+        {post.title}
+        <div className="title-btns">
+          <Link className="btn btn-outline" href={`/posts/${postId}/edit`}>
+            Edit
+          </Link>
+          <DeleteButton postId={postId}/>
+        </div>
+      </h1>
       <span className="page-subtitle">
         By:{" "}
         <Suspense fallback={<Skeleton short inline />}>
@@ -73,27 +90,26 @@ async function PostDetails({ postId }: { postId: string }) {
       </span>
       <div>{post.body}</div>
     </>
-  );
+  )
 }
 
 async function UserDetails({ userId }: { userId: number }) {
-  const user = await getUser(userId);
+  const user = await getUser(userId)
 
-  if(user == null) return notFound();
+  if (user == null) return notFound()
 
   return <Link href={`/users/${user.id}`}>{user.name}</Link>
 }
 
 async function Comments({ postId }: { postId: string }) {
-  const comments = await getPostComments(postId);
+  const comments = await getPostComments(postId)
 
-  return (
-    comments.map((comment) => (
+  return comments.map(comment => (
     <div key={comment.id} className="card">
       <div className="card-body">
         <div className="text-sm mb-1">{comment.email}</div>
         {comment.body}
       </div>
     </div>
-  )));
+  ))
 }

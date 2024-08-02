@@ -1,7 +1,15 @@
-import Link from "next/link";
-import { Skeleton, SkeletonButton } from "./Skeleton";
+import Link from "next/link"
+import { Skeleton, SkeletonButton } from "./Skeleton"
 
-export function PostCard({ id, title, body }: {id: number, title: string, body: string}) {
+export function PostCard({
+  id,
+  title,
+  body,
+}: {
+  id: number
+  title: string
+  body: string
+}) {
   return (
     <div className="card">
       <div className="card-header">{title}</div>
@@ -14,7 +22,7 @@ export function PostCard({ id, title, body }: {id: number, title: string, body: 
         </Link>
       </div>
     </div>
-  );
+  )
 }
 
 export function SkeletonPostCard() {
@@ -35,5 +43,5 @@ export function SkeletonPostCard() {
         <SkeletonButton />
       </div>
     </div>
-  );
+  )
 }

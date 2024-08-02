@@ -1,17 +1,19 @@
 import { getUserPosts } from "@/db/posts"
 import { getUserTodos } from "@/db/todos"
-import { getUser } from "@/db/users";
-import { PostCard, SkeletonPostCard } from "@/components/PostCard";
-import { Skeleton, SkeletonList } from "@/components/Skeleton";
+import { getUser } from "@/db/users"
+import { PostCard, SkeletonPostCard } from "@/components/PostCard"
+import { Skeleton, SkeletonList } from "@/components/Skeleton"
 import { TodoItem } from "@/components/TodoItem"
-import { Suspense } from "react";
-import { notFound } from "next/navigation";
+import { Suspense } from "react"
+import { notFound } from "next/navigation"
 
-export default function UserPage({
-  params: { userId },
-}: {
+type PageProps = {
   params: { userId: string }
-}) {
+}
+
+export default function UserPage(props: PageProps) {
+  const { params: { userId } } = props;
+
   return (
     <>
       <Suspense
@@ -65,13 +67,13 @@ export default function UserPage({
         </Suspense>
       </ul>
     </>
-  );
+  )
 }
 
 async function UserDetails({ userId }: { userId: string }) {
-  const user = await getUser(userId);
+  const user = await getUser(userId)
 
-  if(user == null) return notFound();
+  if (user == null) return notFound()
 
   return (
     <>
@@ -89,15 +91,13 @@ async function UserDetails({ userId }: { userId: string }) {
     ${user.city} ${user.zipcode}`}
       </div>
     </>
-  );
+  )
 }
 
 async function UserPosts({ userId }: { userId: string }) {
   const posts = await getUserPosts(userId)
 
-  return (
-    posts.map(post => <PostCard key={post.id} {...post} />)
-  );
+  return posts.map(post => <PostCard key={post.id} {...post} />)
 }
 
 async function UserTodos({ userId }: { userId: string }) {
