@@ -45,6 +45,25 @@ export const getUserPosts = unstable_cache(
   ["posts", "userId"]
 );
 
+export async function createPost({
+  title,
+  body,
+  userId,
+}: {
+  title: string
+  body: string
+  userId: number
+}) {
+  await wait(2000);
+  return prisma.post.create({
+    data: {
+      title,
+      body,
+      userId,
+    },
+  })
+}
+
 function wait(duration: number) {
   return new Promise(resolve => {
     setTimeout(resolve, duration)

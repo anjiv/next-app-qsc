@@ -1,0 +1,17 @@
+GET  http://localhost:3000/posts
+
+###
+POST http://localhost:3000/posts
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "New post",
+  "body": "New post added",
+  "userId": 2
+}
+
+###
+GET  http://localhost:3000/posts/104
